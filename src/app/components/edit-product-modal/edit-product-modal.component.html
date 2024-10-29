@@ -1,0 +1,47 @@
+<div class="modal fade" id="editProductModal" tabindex="-1" role="dialog" aria-labelledby="editProductModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editProductModalLabel">Ürünü Düzenle</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="productId">Ürün ID</label>
+          <input type="text" class="form-control" id="productId" [value]="productId" disabled>
+        </div>
+
+        <div class="form-group">
+          <label for="productName">Ürün Adı</label>
+          <input type="text" class="form-control" id="productName" [(ngModel)]="updatedName" placeholder="Ürün adını girin">
+        </div>
+
+        <div class="form-group">
+          <label for="currentDepartment">Bulunduğu Reyon Türü</label>
+          <input type="text" class="form-control" id="currentDepartment" [value]="currentDepartmentName" disabled>
+        </div>
+
+        <div class="form-group">
+          <label for="marketSelect">Taşınacak Marketi Seçiniz</label>
+          <select class="form-control" id="marketSelect" [(ngModel)]="selectedMarketId">
+            <option *ngFor="let market of markets" disabled [value]="market.id">{{ market.name }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="departmentSelect">Taşınacak Reyonu Seçiniz </label>
+          <select class="form-control" id="departmentSelect" [(ngModel)]="selectedDepartmentId">
+            <option *ngFor="let department of departments" disabled [value]="department.id">{{ department.name }} </option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"  (click)="closeModal()">Kapat</button>
+        <button type="button" class="btn btn-primary" (click)="updateProduct()">Güncelle</button>
+        <button type="button" class="btn btn-danger" (click)="deleteProduct()">Sil</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+<app-navbar (searchEvent)="onSearchTermChanged($event)"></app-navbar>
+<div class="container mt-4">
+  <h2 class="text-center">Marketler</h2>
+  <div class="row">
+    <div class="col-md-6" *ngFor="let market of filteredMarkets">
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5 class="card-title">{{ market.name }}</h5>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+              <thead class="thead-light">
+              <tr>
+                <th scope="col">Reyon</th>
+                <th scope="col">Tür</th>
+                <th scope="col">Ürünler</th>
+                <th scope="col" class="text-center">
+                  <button class="btn btn-primary" (click)="openAddDepartmentModal(market.name)">Reyon Ekle</button>
+                </th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let department of market.departments">
+                <td>
+                  {{ department.name }}
+                  <button class="btn btn-danger btn-sm float-end" (click)="confirmDelete(department.id,market.name)">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </td>
+                <td>{{ department.type }}</td>
+                <td>
+                  <ul class="list-unstyled">
+                    <li *ngFor="let product of department.products">{{ product.name }}
+                        <button class="btn btn-warning btn-sm" (click)="openEditProductModal(market.name, department.id, product.id)">Düzenle</button>
+                    </li>
+                  </ul>
+                </td>
+                <td class="text-center">
+                  <button class="btn btn-secondary" (click)="openAddProductModal(market.name,department)">Ürün Ekle</button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-department
+  [marketName]="selectedMarket"
+  (departmentAdded)="onDepartmentAdded($event)">
+</app-department>
+
+<app-add-product-modal
+  [selectedMarketName]="selectedMarket"
+  [selectedDepartmentId]="selectedDepartmentId"
+  [selectedDepartmentName]="selectedDepartment"
+  (productAdded)="onProductAdded($event)">
+</app-add-product-modal>
+
+<app-edit-product-modal
+    #editProductModal
+        *ngIf="selectedProductId"
+        [marketName]="selectedMarketName"
+        [departmentId]="selectedDepartmentId"
+        [productId]="selectedProductId"
+        (productUpdated)="onProductUpdated($event)"
+        (productDeleted)="onProductDeleted($event)">
+</app-edit-product-modal>

@@ -1,0 +1,28 @@
+<div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addProductModalLabel">Ürün Ekle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="productId" class="form-label">Ürün ID</label>
+                    <input type="text" class="form-control" id="productId" [(ngModel)]="productId" placeholder="Ürün ID'sini girin" />
+                </div>
+                <div class="mb-3">
+                    <label for="productName" class="form-label">Ürün Adı</label>
+                    <input type="text" class="form-control" id="productName" [(ngModel)]="productName" placeholder="Ürün adını girin" />
+                </div>
+                <div class="mb-3">
+                    <label for="selectedDepartment" class="form-label">Eklenecek Reyon</label>
+                    <input type="text" class="form-control" id="selectedDepartment" [value]="selectedDepartmentName" disabled />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                <button type="button" class="btn btn-primary" (click)="addProduct()" data-bs-dismiss="modal">Ekle</button>
+            </div>
+        </div>
+    </div>
+</div>
