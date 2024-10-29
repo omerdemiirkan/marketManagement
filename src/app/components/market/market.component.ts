@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MarketService} from '../../services/market.service';
 import {DepartmentComponent} from '../department/department.component';
 import {CommonModule} from '@angular/common';
@@ -16,7 +16,7 @@ import {EditProductModalComponent} from "../edit-product-modal/edit-product-moda
   standalone: true,
   imports: [CommonModule, DepartmentComponent, FormsModule, AddProductModalComponent,NavbarComponent,EditProductModalComponent]
 })
-export class MarketComponent implements OnInit,AfterViewInit {
+export class MarketComponent implements OnInit {
   selectedMarket: string = '';
   markets: Market[] = [];
   products: Product[] = [];
@@ -41,9 +41,6 @@ export class MarketComponent implements OnInit,AfterViewInit {
       );
       this.filteredProducts = this.products;
     });
-  }
-  ngAfterViewInit(): void {
-    console.log('EditProductModalComponent:', this.editProductModalComponent);
   }
 
   onSearchTermChanged(searchTerm: string): void {
@@ -88,10 +85,10 @@ export class MarketComponent implements OnInit,AfterViewInit {
       modal.show();
     }
   }
-  onProductAdded(product: Product): void {
+  onProductAdded(): void {
     this.loadMarkets();
   }
-  onDepartmentAdded(newDepartment: Department): void {
+  onDepartmentAdded(): void {
     this.loadMarkets();
   }
   confirmDelete(departmentId: number, marketName: string): void {

@@ -52,7 +52,6 @@ export class EditProductModalComponent implements OnInit {
       if (department) {
         this.product = department.products.find(prod => prod.id === this.productId);
         if (this.product) {
-          console.log(this.product);
           this.updatedName = this.product.name;
           this.currentDepartmentName=department.type
           this.selectedDepartmentId = department.id;

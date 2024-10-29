@@ -51,14 +51,14 @@
 
 <app-department
   [marketName]="selectedMarket"
-  (departmentAdded)="onDepartmentAdded($event)">
+  (departmentAdded)="onDepartmentAdded()">
 </app-department>
 
 <app-add-product-modal
   [selectedMarketName]="selectedMarket"
   [selectedDepartmentId]="selectedDepartmentId"
   [selectedDepartmentName]="selectedDepartment"
-  (productAdded)="onProductAdded($event)">
+  (productAdded)="onProductAdded()">
 </app-add-product-modal>
 
 <app-edit-product-modal
